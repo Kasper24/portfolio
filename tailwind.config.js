@@ -85,6 +85,9 @@ export default {
       animation: {
         wave: "wave 10s ease-in-out infinite alternate",
       },
+      fontFamily: {
+        teko: ["Teko", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

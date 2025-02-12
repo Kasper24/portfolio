@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useMediaQuery() {
+const useMediaQuery = () => {
   const [device, setDevice] = useState<"mobile" | "tablet" | "desktop" | null>(
     null,
   );
@@ -43,4 +43,6 @@ export default function useMediaQuery() {
     isTablet: device === "tablet",
     isDesktop: device === "desktop",
   };
-}
+};
+
+export default useMediaQuery;
