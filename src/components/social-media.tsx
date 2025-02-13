@@ -12,7 +12,7 @@ const SocialMedia = ({
   return (
     <Button className="px-3" variant="outline" asChild>
       <a href={link}>
-        <Icon></Icon>
+        <Icon data-testid="icon"></Icon>
         <h3>{name}</h3>
       </a>
     </Button>
