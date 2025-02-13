@@ -4,14 +4,14 @@
 
 @font-face{
   font-family: "Teko";
-  src: local("Teko-Regular"), url('../public/fonts/teko/Teko-Regular.ttf');
+  src: local("Teko-Regular"), url('/fonts/teko/Teko-Regular.ttf');
   font-weight: 400; /* Normal weight */
   font-style: normal;
 }
 
 @font-face{
   font-family: "Teko";
-  src: local("Teko-Regular"), url('../public/fonts/teko/Teko-Bold.ttf');
+  src: local("Teko-Regular"), url('/fonts/teko/Teko-Bold.ttf');
   font-weight: 700; /* Normal weight */
   font-style: normal;
 }
