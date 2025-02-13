@@ -36,14 +36,14 @@ const GithubStars = ({ owner, repo }: { owner: string; repo: string }) => {
 
   if (stars === null) {
     <div className="flex space-x-2">
-      <FaStar className="text-yellow-500" />
+      <FaStar aria-label="star" className="text-yellow-500" />
       <svg className="mr-3 size-5 animate-spin" viewBox="0 0 24 24"></svg>
     </div>;
   }
 
   return (
     <div className="flex space-x-2">
-      <FaStar className="text-yellow-500" />
+      <FaStar aria-label="star" className="text-yellow-500" />
       <div>{stars}</div>
     </div>
   );
