@@ -18,7 +18,12 @@ const ToggleTheme = () => {
   const { toggleTheme } = useTheme();
 
   return (
-    <Button variant="outline" size="icon" onClick={toggleTheme}>
+    <Button
+      data-testid="theme-button"
+      variant="outline"
+      size="icon"
+      onClick={toggleTheme}
+    >
       <FaMoon></FaMoon>
     </Button>
   );
@@ -28,9 +33,9 @@ const MobileHeader = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
 
   return (
-    <header className="flex justify-between">
+    <header data-testid="mobile-header" className="flex justify-between">
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-        <SheetTrigger>
+        <SheetTrigger data-testid="mobile-sheet-button">
           <FaBars></FaBars>
         </SheetTrigger>
         <SheetContent side="left" className="w-[250px]">
@@ -55,7 +60,10 @@ const MobileHeader = () => {
 
 const LargerThanMobileHeader = () => {
   return (
-    <header className="flex items-center justify-between">
+    <header
+      data-testid="desktop-header"
+      className="flex items-center justify-between"
+    >
       <Logo></Logo>
       <nav className="flex space-x-4">
         <Button variant="ghost" asChild>

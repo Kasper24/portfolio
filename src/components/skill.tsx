@@ -11,7 +11,7 @@ const Skill = ({
   return (
     <BlurredCard gradientClassNames="blur-lg rounded-none" color={color}>
       <div className="p-2">
-        <Logo className="fill-foreground"></Logo>
+        <Logo data-testid="icon" className="fill-foreground"></Logo>
       </div>
     </BlurredCard>
   );
