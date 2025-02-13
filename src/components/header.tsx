@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FaBars, FaMoon } from "react-icons/fa";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 import useMediaQuery from "@/hooks/use-media-query";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -36,15 +35,15 @@ const MobileHeader = () => {
         </SheetTrigger>
         <SheetContent side="left" className="w-[250px]">
           <div className="space-y-2">
-            <Button variant="ghost" className="block">
-              <AnchorLink href="#about" onClick={() => setSheetOpen(false)}>
+            <Button variant="ghost" className="block" asChild>
+              <a href="#about" onClick={() => setSheetOpen(false)}>
                 About Me
-              </AnchorLink>
+              </a>
             </Button>
-            <Button variant="ghost" className="block">
-              <AnchorLink href="#projects" onClick={() => setSheetOpen(false)}>
+            <Button variant="ghost" className="block" asChild>
+              <a href="#projects" onClick={() => setSheetOpen(false)}>
                 Projects
-              </AnchorLink>
+              </a>
             </Button>
           </div>
         </SheetContent>
@@ -59,11 +58,11 @@ const LargerThanMobileHeader = () => {
     <header className="flex items-center justify-between">
       <Logo></Logo>
       <nav className="flex space-x-4">
-        <Button variant="ghost">
-          <AnchorLink href="#about">About Me</AnchorLink>
+        <Button variant="ghost" asChild>
+          <a href="#about">About Me</a>
         </Button>
-        <Button variant="ghost">
-          <AnchorLink href="#projects">Projects</AnchorLink>
+        <Button variant="ghost" asChild>
+          <a href="#projects">Projects</a>
         </Button>
         <ToggleTheme></ToggleTheme>
       </nav>

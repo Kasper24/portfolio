@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+html { scroll-behavior: smooth; }
+
 @font-face{
   font-family: "Teko";
   src: local("Teko-Regular"), url('/fonts/teko/Teko-Regular.ttf');
@@ -15,8 +17,6 @@
   font-weight: 700; /* Normal weight */
   font-style: normal;
 }
-
-
 
 @layer base {
   :root {
