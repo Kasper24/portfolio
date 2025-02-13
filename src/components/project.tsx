@@ -28,10 +28,7 @@ const GithubStars = ({ owner, repo }: { owner: string; repo: string }) => {
 
   if (error) {
     console.error(error);
-    <div className="flex space-x-2">
-      <FaStar className="text-yellow-500" />
-      <div>0</div>
-    </div>;
+    return null;
   }
 
   if (stars === null) {
