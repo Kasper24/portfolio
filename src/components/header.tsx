@@ -58,7 +58,7 @@ const MobileHeader = () => {
   );
 };
 
-const LargerThanMobileHeader = () => {
+const DesktopHeader = () => {
   return (
     <header
       data-testid="desktop-header"
@@ -81,7 +81,7 @@ const LargerThanMobileHeader = () => {
 const Header = () => {
   const { isMobile } = useMediaQuery();
 
-  return <>{isMobile ? <MobileHeader /> : <LargerThanMobileHeader />}</>;
+  return <>{isMobile ? <MobileHeader /> : <DesktopHeader />}</>;
 };
 
 export default Header;
