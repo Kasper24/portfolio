@@ -54,7 +54,7 @@ const Skills = () => {
   return (
     <div className="space-y-2">
       <h3 className="text-xl font-bold">Skills</h3>
-      <ul className="grid grid-cols-6 gap-3 sm:grid-cols-12 lg:grid-cols-4">
+      <ul className="grid grid-cols-4 gap-3 xs:grid-cols-6 sm:grid-cols-12 lg:grid-cols-4">
         <Skill color="#ffdf00" Logo={JavascriptLogo}></Skill>
         <Skill color="#007bcd" Logo={TypescriptLogo}></Skill>
         <Skill color="#06b6d4" Logo={TailwindcssLogo}></Skill>
@@ -76,7 +76,7 @@ const Contact = () => {
   return (
     <div className="space-y-2">
       <h3 className="text-xl font-bold">Get in Touch</h3>
-      <div className="flex space-x-3">
+      <div className="gap-x-2 xs:flex">
         <SocialMedia
           name="Github"
           link="https://github.com/Kasper24"
