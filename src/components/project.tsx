@@ -17,7 +17,7 @@ const GithubStars = ({ owner, repo }: { owner: string; repo: string }) => {
           throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
         const data = await response.json();
-        setStars(data.stargazers_count); // Get the number of stars
+        setStars(data.stargazers_count);
       } catch (err: any) {
         setError(err.message);
       }
