@@ -2,18 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
-@font-face{
+@font-face {
   font-family: "Teko";
-  src: local("Teko-Regular"), url('/fonts/teko/Teko-Regular.ttf');
+  src: local("Teko-Regular"), url("/fonts/teko/Teko-Regular.ttf");
   font-weight: 400; /* Normal weight */
   font-style: normal;
 }
 
-@font-face{
+@font-face {
   font-family: "Teko";
-  src: local("Teko-Regular"), url('/fonts/teko/Teko-Bold.ttf');
+  src: local("Teko-Regular"), url("/fonts/teko/Teko-Bold.ttf");
   font-weight: 700; /* Normal weight */
   font-style: normal;
 }
@@ -75,7 +77,6 @@ html { scroll-behavior: smooth; }
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
@@ -84,4 +85,3 @@ html { scroll-behavior: smooth; }
     @apply bg-background text-foreground;
   }
 }
-
