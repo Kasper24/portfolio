@@ -34,7 +34,7 @@ const Title = () => {
 const AboutMe = () => {
   return (
     <section id="about">
-      <p className="text-xl">
+      <p>
         Hey there! I'm Ofek, a passionate programmer who embarked on this
         journey since I was a young kid. My adventure began with a love for
         gaming, leading me to develop games using the Unity and Unreal engine.
@@ -54,7 +54,7 @@ const Skills = () => {
   return (
     <div className="space-y-2">
       <h3 className="text-xl font-bold">Skills</h3>
-      <ul className="grid grid-cols-4 gap-3 xs:grid-cols-6 sm:grid-cols-12 lg:grid-cols-4">
+      <ul className="grid grid-cols-4 gap-3 xs:grid-cols-6 sm:grid-cols-12 lg:grid-cols-6">
         <Skill color="#ffdf00" Logo={JavascriptLogo}></Skill>
         <Skill color="#007bcd" Logo={TypescriptLogo}></Skill>
         <Skill color="#06b6d4" Logo={TailwindcssLogo}></Skill>
@@ -153,10 +153,10 @@ export default function App() {
           <main className="space-y-6">
             <Title />
             <div className="gap-x-5 space-y-6 lg:flex lg:space-y-0">
-              <div className="space-y-6 lg:w-8/12">
+              <div className="space-y-6 lg:w-6/12">
                 <AboutMe />
               </div>
-              <div className="space-y-3 rounded-md bg-foreground/5 p-2 lg:w-4/12">
+              <div className="space-y-3 rounded-md bg-foreground/5 p-2 lg:w-6/12">
                 <Skills />
                 <Contact />
               </div>
