@@ -7,30 +7,20 @@ on:
 
 jobs:
   test:
-    name: Run Tests
+    uses: ./.github/workflows/test.yml
+
+  comment:
+    name: Comment
     runs-on: ubuntu-latest
+    needs: [test]
 
     permissions:
-        # Required to checkout the code
-        contents: read
-        # Required to put a comment into the pull-request
-        pull-requests: write
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-
-      - name: Run tests with coverage
-        run: npm run test -- --coverage
-
       - name: 'Report Coverage'
         if: always()
         uses:  davelosert/vitest-coverage-report-action@v2
