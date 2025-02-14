@@ -18,8 +18,10 @@ const GithubStars = ({ owner, repo }: { owner: string; repo: string }) => {
         }
         const data = await response.json();
         setStars(data.stargazers_count);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        let message = "Unknown Error";
+        if (err instanceof Error) message = err.message;
+        setError(message);
       }
     };
 
