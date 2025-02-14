@@ -76,7 +76,7 @@ const Contact = () => {
   return (
     <div className="space-y-2">
       <h3 className="text-xl font-bold">Get in Touch</h3>
-      <div className="gap-x-2 xs:flex">
+      <div className="flex flex-col gap-2 xs:flex-row">
         <SocialMedia
           name="Github"
           link="https://github.com/Kasper24"
