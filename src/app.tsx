@@ -163,7 +163,7 @@ export default function App() {
               <div className="space-y-6 lg:w-6/12">
                 <AboutMe />
               </div>
-              <div className="space-y-3 rounded-md bg-foreground/5 p-2 lg:w-6/12">
+              <div className="space-y-3 rounded-md bg-foreground/5 p-4 lg:w-6/12">
                 <Skills />
                 <Contact />
               </div>
