@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("has title", async ({ page }) => {
-  await page.goto("http://localhost:5174/portfolio/");
+  await page.goto("/");
 
   await expect(page).toHaveTitle(/Home | Ofek/);
 });
@@ -12,7 +12,7 @@ test.describe("theme toggle tests", () => {
   });
 
   test("theme mode toggle", async ({ page }) => {
-    await page.goto("http://localhost:5174/portfolio/");
+    await page.goto("/");
 
     const toggleThemeButton = await page.getByTestId("theme-button");
     await toggleThemeButton.click();
@@ -29,7 +29,7 @@ test.describe("mobile navigation menu tests", () => {
   });
 
   test("mobile menu opens", async ({ page }) => {
-    await page.goto("http://localhost:5174/portfolio/");
+    await page.goto("/");
 
     const mobileMenuButton = await page.getByTestId("mobile-sheet-button");
     await mobileMenuButton.click();
@@ -38,25 +38,25 @@ test.describe("mobile navigation menu tests", () => {
   });
 
   test("about me link works", async ({ page }) => {
-    await page.goto("http://localhost:5174/portfolio/");
+    await page.goto("/");
 
     const mobileMenuButton = await page.getByTestId("mobile-sheet-button");
     await mobileMenuButton.click();
     const aboutMeLink = await page.getByRole("link", { name: "About Me" });
     await aboutMeLink.click();
 
-    await expect(page).toHaveURL("http://localhost:5174/portfolio/#about");
+    await expect(page).toHaveURL("/portfolio/#about");
   });
 
   test("projects link works", async ({ page }) => {
-    await page.goto("http://localhost:5174/portfolio/");
+    await page.goto("/");
 
     const mobileMenuButton = await page.getByTestId("mobile-sheet-button");
     await mobileMenuButton.click();
     const projectsink = await page.getByRole("link", { name: "Projects" });
     await projectsink.click();
 
-    await expect(page).toHaveURL("http://localhost:5174/portfolio/#projects");
+    await expect(page).toHaveURL("/portfolio/#projects");
   });
 });
 
@@ -66,20 +66,20 @@ test.describe("desktop navigation menu tests", () => {
   });
 
   test("about me link works", async ({ page }) => {
-    await page.goto("http://localhost:5174/portfolio/");
+    await page.goto("/");
 
     const aboutMeLink = await page.getByRole("link", { name: "About Me" });
     await aboutMeLink.click();
 
-    await expect(page).toHaveURL("http://localhost:5174/portfolio/#about");
+    await expect(page).toHaveURL("/portfolio/#about");
   });
 
   test("projects link works", async ({ page }) => {
-    await page.goto("http://localhost:5174/portfolio/");
+    await page.goto("/");
 
     const projectsink = await page.getByRole("link", { name: "Projects" });
     await projectsink.click();
 
-    await expect(page).toHaveURL("http://localhost:5174/portfolio/#projects");
+    await expect(page).toHaveURL("/portfolio/#projects");
   });
 });
