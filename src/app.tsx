@@ -1,4 +1,5 @@
 import { FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import Header from "@/components/header";
 import Project from "@/components/project";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -51,9 +52,11 @@ const AboutMe = () => {
 };
 
 const Skills = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-2">
-      <h3 className="text-xl font-bold">Skills</h3>
+      <h3 className="text-xl font-bold">{t("Skills")}</h3>
       <ul className="grid grid-cols-4 gap-3 xs:grid-cols-6 sm:grid-cols-12 lg:grid-cols-6">
         <Skill color="#ffdf00" Logo={JavascriptLogo}></Skill>
         <Skill color="#007bcd" Logo={TypescriptLogo}></Skill>
@@ -73,9 +76,11 @@ const Skills = () => {
 };
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-2">
-      <h3 className="text-xl font-bold">Get in Touch</h3>
+      <h3 className="text-xl font-bold">{t("Get in Touch")}</h3>
       <div className="flex flex-col gap-2 xs:flex-row">
         <SocialMedia
           name="Github"
@@ -84,7 +89,7 @@ const Contact = () => {
         ></SocialMedia>
         <SocialMedia
           name="LinkedIn"
-          link="https://www.linkedin.com/in/ofek-itscovits-413a03286"
+          link="https://www.linkedin.com/in/ofek-its"
           Icon={FaLinkedin}
         ></SocialMedia>
         <SocialMedia
@@ -137,9 +142,11 @@ const Projects = () => {
 };
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="space-y-3 text-center text-sm opacity-80">
-      © {new Date().getFullYear()} made by Ofek. All rights reserved.
+      {t("Copyright")}
     </footer>
   );
 };

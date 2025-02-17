@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { FaBars, FaMoon } from "react-icons/fa";
+import i18n from "i18next";
+import { useTranslation } from "react-i18next";
 import useMediaQuery from "@/hooks/use-media-query";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useTheme } from "@/components/theme-provider";
 
 const Logo = () => {
@@ -29,8 +38,37 @@ const ToggleTheme = () => {
   );
 };
 
+const SetLanguage = () => {
+  return (
+    <Select
+      defaultValue={i18n.language}
+      onValueChange={(value: string) => {
+        i18n.changeLanguage(value);
+        localStorage.setItem("lng", value);
+      }}
+    >
+      <SelectTrigger className="w-[60px]">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="en">en</SelectItem>
+        <SelectItem value="fr">fr</SelectItem>
+        <SelectItem value="de">de</SelectItem>
+        <SelectItem value="it">it</SelectItem>
+        <SelectItem value="pt">pt</SelectItem>
+        <SelectItem value="ru">ru</SelectItem>
+        <SelectItem value="ja">ja</SelectItem>
+        <SelectItem value="ko">ko</SelectItem>
+        <SelectItem value="ar">ar</SelectItem>
+        <SelectItem value="he">he</SelectItem>
+      </SelectContent>
+    </Select>
+  );
+};
+
 const MobileHeader = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <header data-testid="mobile-header" className="flex justify-between">
@@ -42,23 +80,26 @@ const MobileHeader = () => {
           <div className="space-y-2">
             <Button variant="ghost" className="block" asChild>
               <a href="#about" onClick={() => setSheetOpen(false)}>
-                About Me
+                {t("About Me")}
               </a>
             </Button>
             <Button variant="ghost" className="block" asChild>
               <a href="#projects" onClick={() => setSheetOpen(false)}>
-                Projects
+                {t("Projects")}
               </a>
             </Button>
           </div>
         </SheetContent>
       </Sheet>
+      <SetLanguage />
       <ToggleTheme></ToggleTheme>
     </header>
   );
 };
 
 const DesktopHeader = () => {
+  const { t } = useTranslation();
+
   return (
     <header
       data-testid="desktop-header"
@@ -67,12 +108,13 @@ const DesktopHeader = () => {
       <Logo></Logo>
       <nav className="flex space-x-4">
         <Button variant="ghost" asChild>
-          <a href="#about">About Me</a>
+          <a href="#about">{t("About Me")}</a>
         </Button>
         <Button variant="ghost" asChild>
-          <a href="#projects">Projects</a>
+          <a href="#projects">{t("Projects")}</a>
         </Button>
         <ToggleTheme></ToggleTheme>
+        <SetLanguage />
       </nav>
     </header>
   );
