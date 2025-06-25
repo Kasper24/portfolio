@@ -4,15 +4,28 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix -w backend"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "sh -c 'npm run lint:types -w backend'"
+    ],
+    "*.{js,jsx,ts,tsx,md,html,css}": [
+      "npm run format:write"
+    ]
+  },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint:check": "eslint --max-warnings=0 \"src/**/*.{js,jsx,ts,tsx,json}\"",
-    "prettier:format": "prettier --write \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
-    "prettier:check": "prettier --check \"**/*.{ts,tsx,js,md,mdx,css,yaml}\"",
+    "lint:types": "tsc --noEmit",
+    "lint:check": "eslint --max-warnings=0",
+    "lint:fix": "eslint --fix",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,css,yaml}\"",
+    "format:write": "prettier --write \"**/*.{ts,tsx,js,css,yaml}\"",
     "ts:check": "tsc --noEmit",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
