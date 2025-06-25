@@ -322,7 +322,7 @@ export default function App() {
               <div className="mb-6 flex items-center gap-3">
                 <h2 className="text-2xl font-bold">{t("Featured Projects")}</h2>
                 <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-                  {5} projects
+                  {6} projects
                 </span>
               </div>
               <div className="grid gap-6">
@@ -356,8 +356,8 @@ export default function App() {
                   />
                 </div>
 
-                {/* Second row - 3 columns */}
-                <div className="grid gap-6 md:grid-cols-3">
+                {/* Second row - 2 columns */}
+                <div className="grid gap-6 md:grid-cols-2">
                   <ProjectCard
                     title="KwesomeDE"
                     description="A highly customizable desktop environment built on AwesomeWM with modern UI, enhanced workflows, and productivity-focused widgets."
@@ -367,6 +367,18 @@ export default function App() {
                     owner="Kasper24"
                     repo="KwesomeDE"
                   />
+                  <ProjectCard
+                    title="QMK-OpenRGB"
+                    description="Enhanced QMK firmware fork integrating OpenRGB support for advanced RGB lighting control on custom mechanical keyboards."
+                    tags={["C", "QMK", "Firmware", "RGB", "Keyboard"]}
+                    github="https://github.com/Kasper24/QMK-OpenRGB"
+                    owner="Kasper24"
+                    repo="QMK-OpenRGB"
+                  />
+                </div>
+
+                {/* Third row - 2 columns */}
+                <div className="grid gap-6 md:grid-cols-2">
                   <ProjectCard
                     title="Typistack"
                     description="Express.js wrapper providing full-stack type safety. Generates typed routes and handlers, reducing bugs and improving developer experience."
