@@ -199,6 +199,7 @@ const ProjectCard = ({
               className="flex h-8 w-8 items-center justify-center rounded-lg bg-background transition-all hover:scale-110 hover:bg-accent"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`View ${title} source code on GitHub`}
             >
               <FaGithub className="h-4 w-4" />
             </a>
@@ -208,6 +209,7 @@ const ProjectCard = ({
                 className="flex h-8 w-8 items-center justify-center rounded-lg bg-background transition-all hover:scale-110 hover:bg-accent"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`View ${title} live demo`}
               >
                 <FaExternalLinkAlt className="h-3 w-3" />
               </a>
@@ -295,7 +297,10 @@ export default function App() {
       <div className="min-h-screen bg-background">
         <div className="mx-auto max-w-4xl p-6">
           {/* Clean header without navbar */}
-          <header className="flex justify-center pb-8">
+          <header
+            className="flex justify-center pb-8"
+            aria-label="Main navigation"
+          >
             <Header />
           </header>
 

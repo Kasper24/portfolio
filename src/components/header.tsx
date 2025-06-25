@@ -35,6 +35,7 @@ const ToggleTheme = () => {
       size="icon"
       onClick={toggleTheme}
       className="transition-all duration-300 hover:scale-110 hover:bg-primary/10"
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
       {theme === "dark" ? (
         <FaSun className="transition-transform duration-300 hover:rotate-12" />
@@ -54,7 +55,10 @@ const SetLanguage = () => {
         localStorage.setItem("lng", value);
       }}
     >
-      <SelectTrigger className="w-[70px] transition-all duration-300 hover:scale-105 hover:bg-primary/10">
+      <SelectTrigger
+        className="w-[70px] transition-all duration-300 hover:scale-105 hover:bg-primary/10"
+        aria-label="Change language"
+      >
         <SelectValue />
       </SelectTrigger>
       <SelectContent className="glass-effect">
@@ -78,9 +82,11 @@ const MobileHeader = () => {
   const { t } = useTranslation();
 
   return (
-    <header
+    <div
       data-testid="mobile-header"
       className="glass-effect flex animate-fadeIn items-center justify-between rounded-lg p-4"
+      role="banner"
+      aria-label="Mobile navigation"
     >
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
         <SheetTrigger data-testid="mobile-sheet-button" asChild>
@@ -119,7 +125,7 @@ const MobileHeader = () => {
         <SetLanguage />
         <ToggleTheme />
       </div>
-    </header>
+    </div>
   );
 };
 
@@ -127,7 +133,7 @@ const DesktopHeader = () => {
   const { t } = useTranslation();
 
   return (
-    <header
+    <div
       data-testid="desktop-header"
       className="glass-effect flex animate-fadeIn items-center justify-between space-x-3 rounded-xl p-3"
     >
@@ -152,7 +158,7 @@ const DesktopHeader = () => {
           <SetLanguage />
         </div>
       </nav>
-    </header>
+    </div>
   );
 };
 
