@@ -12,21 +12,16 @@ test.describe("accessibility tests", () => {
     page,
   }) => {
     await page.goto("/");
-
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
-
     expect(accessibilityScanResults.violations).toEqual([]);
   });
-
   test("should not have any automatically detectable WCAG A or AA violations", async ({
     page,
   }) => {
     await page.goto("https://your-site.com/");
-
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
       .analyze();
-
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 });
@@ -93,7 +88,9 @@ test.describe("desktop navigation menu tests", () => {
   test("about me link works", async ({ page }) => {
     await page.goto("/");
 
-    const aboutMeLink = await page.getByRole("link", { name: "About Me" });
+    const aboutMeLink = await page
+      .getByTestId("desktop-header")
+      .getByRole("link", { name: "About Me" });
     await aboutMeLink.click();
 
     await expect(page).toHaveURL("/portfolio/#about");
@@ -102,7 +99,9 @@ test.describe("desktop navigation menu tests", () => {
   test("projects link works", async ({ page }) => {
     await page.goto("/");
 
-    const projectsLink = await page.getByRole("link", { name: "Projects" });
+    const projectsLink = await page
+      .getByTestId("desktop-header")
+      .getByRole("link", { name: "Projects" });
     await projectsLink.click();
 
     await expect(page).toHaveURL("/portfolio/#projects");
