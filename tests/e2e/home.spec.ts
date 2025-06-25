@@ -1,9 +1,34 @@
 import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright"; // 1
 
 test("has title", async ({ page }) => {
   await page.goto("/");
 
   await expect(page).toHaveTitle(/Home | Ofek/);
+});
+
+test.describe("accessibility tests", () => {
+  test("should not have any automatically detectable accessibility issues", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+
+  test("should not have any automatically detectable WCAG A or AA violations", async ({
+    page,
+  }) => {
+    await page.goto("https://your-site.com/");
+
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+      .analyze();
+
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
 });
 
 test.describe("theme toggle tests", () => {
@@ -53,8 +78,8 @@ test.describe("mobile navigation menu tests", () => {
 
     const mobileMenuButton = await page.getByTestId("mobile-sheet-button");
     await mobileMenuButton.click();
-    const projectsink = await page.getByRole("link", { name: "Projects" });
-    await projectsink.click();
+    const projectsLink = await page.getByRole("link", { name: "Projects" });
+    await projectsLink.click();
 
     await expect(page).toHaveURL("/portfolio/#projects");
   });
@@ -77,8 +102,8 @@ test.describe("desktop navigation menu tests", () => {
   test("projects link works", async ({ page }) => {
     await page.goto("/");
 
-    const projectsink = await page.getByRole("link", { name: "Projects" });
-    await projectsink.click();
+    const projectsLink = await page.getByRole("link", { name: "Projects" });
+    await projectsLink.click();
 
     await expect(page).toHaveURL("/portfolio/#projects");
   });

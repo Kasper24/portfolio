@@ -1,176 +1,389 @@
-import { FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import {
+  FaLinkedin,
+  FaEnvelope,
+  FaGithub,
+  FaExternalLinkAlt,
+  FaStar,
+} from "react-icons/fa";
 import Header from "@/components/header";
-import Project from "@/components/project";
-import { ThemeProvider } from "@/components/theme-provider";
-import Panda from "@/components/panda";
-import Skill from "@/components/skill";
 import {
   DartLogo,
   FlutterLogo,
   JavascriptLogo,
-  LinuxLogo,
-  LuaLogo,
   NextjsLogo,
   NodejsLogo,
-  NixLogo,
   ReactLogo,
   TailwindcssLogo,
   TypescriptLogo,
-  DockerLogo,
 } from "@/components/logos";
-import SocialMedia from "@/components/social-media";
+import { ThemeProvider } from "@/providers/theme-provider";
 
-const Title = () => {
+const HeroSection = () => {
   return (
-    <section>
-      <h1 className="text-center text-5xl font-bold">
-        Hello, I'm <span className="text-primary">Ofek</span>.
-      </h1>
-      <Panda />
-    </section>
-  );
-};
-
-const AboutMe = () => {
-  return (
-    <section id="about">
-      <p>
-        Hey there! I'm Ofek, a passionate programmer who embarked on this
-        journey since I was a young kid. My adventure began with a love for
-        gaming, leading me to develop games using the Unity and Unreal engine.
-        This experience honed my skills in game development and ignited a
-        broader interest in software engineering. These days my passion is
-        building applications with TypeScript, React, Next and Tailwind. It
-        inspires me how coding can reach so many people, the possibilities feel
-        endless. I care deeply about open-source software, privacy, best
-        practices, open standards, idiomatic code, and great user and developer
-        experiences.
-      </p>
-    </section>
-  );
-};
-
-const Skills = () => {
-  const { t } = useTranslation();
-
-  return (
-    <div className="space-y-2">
-      <h3 className="text-xl font-bold">{t("Skills")}</h3>
-      <ul className="grid grid-cols-4 gap-3 xs:grid-cols-6 sm:grid-cols-12 lg:grid-cols-6">
-        <Skill color="#ffdf00" Logo={JavascriptLogo}></Skill>
-        <Skill color="#007bcd" Logo={TypescriptLogo}></Skill>
-        <Skill color="#06b6d4" Logo={TailwindcssLogo}></Skill>
-        <Skill color="#08afce" Logo={ReactLogo}></Skill>
-        <Skill color="#08afce" Logo={NextjsLogo}></Skill>
-        <Skill color="#8bc500" Logo={NodejsLogo}></Skill>
-        <Skill color="#03589c" Logo={DartLogo}></Skill>
-        <Skill color="#54c5f8" Logo={FlutterLogo}></Skill>
-        <Skill color="#00007e" Logo={LuaLogo}></Skill>
-        <Skill color="#7eb5e0" Logo={NixLogo}></Skill>
-        <Skill color="#fed21f" Logo={LinuxLogo}></Skill>
-        <Skill color="#007bcd" Logo={DockerLogo}></Skill>
-      </ul>
-    </div>
-  );
-};
-
-const Contact = () => {
-  const { t } = useTranslation();
-
-  return (
-    <div className="space-y-2">
-      <h3 className="text-xl font-bold">{t("Get in Touch")}</h3>
-      <div className="flex flex-col gap-2 xs:flex-row">
-        <SocialMedia
-          name="Github"
-          link="https://github.com/Kasper24"
-          Icon={FaGithub}
-        ></SocialMedia>
-        <SocialMedia
-          name="LinkedIn"
-          link="https://www.linkedin.com/in/ofek-its"
-          Icon={FaLinkedin}
-        ></SocialMedia>
-        <SocialMedia
-          name="Email"
-          link="mailto:ofek4430@gmail.com"
-          Icon={FaEnvelope}
-        ></SocialMedia>
+    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-primary/5 p-8 md:p-12">
+      <div className="bg-grid-white/[0.02] bg-grid-16 absolute inset-0" />
+      <div className="relative z-10 text-center">
+        <div className="mb-6 inline-block animate-bounce rounded-full bg-primary/10 px-4 py-2">
+          <span className="text-sm font-medium text-primary">
+            👋 Available for work
+          </span>
+        </div>
+        <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-6xl">
+          Hi, I'm{" "}
+          <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            Ofek
+          </span>
+        </h1>
+        <p className="mx-auto mb-8 max-w-xl text-lg text-muted-foreground">
+          Full-stack developer passionate about creating beautiful, functional
+          web applications and desktop environments.
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <a
+            href="#projects"
+            className="group rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:scale-105 hover:bg-primary/90"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("projects")?.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+          >
+            View Projects
+            <span className="ml-1 transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+          <a
+            href="mailto:ofek4430@gmail.com"
+            className="rounded-full border border-border px-6 py-3 text-sm font-medium transition-all hover:scale-105 hover:bg-accent"
+          >
+            Get in Touch
+          </a>
+        </div>
       </div>
     </div>
   );
 };
 
-const Projects = () => {
+const TechStack = () => {
+  const techs = [
+    { Logo: JavascriptLogo, name: "JavaScript", color: "#ffdf00" },
+    { Logo: TypescriptLogo, name: "TypeScript", color: "#007bcd" },
+    { Logo: ReactLogo, name: "React", color: "#08afce" },
+    { Logo: NextjsLogo, name: "Next.js", color: "#08afce" },
+    { Logo: TailwindcssLogo, name: "Tailwind", color: "#06b6d4" },
+    { Logo: NodejsLogo, name: "Node.js", color: "#8bc500" },
+    { Logo: DartLogo, name: "Dart", color: "#03589c" },
+    { Logo: FlutterLogo, name: "Flutter", color: "#54c5f8" },
+  ];
+
   return (
-    <section id="projects">
-      <ul className="space-y-6">
-        <Project
-          owner="Kasper24"
-          repo="KwesomeDE"
-          desc="KwesomeDE is a highly customizable and aesthetic desktop environment
-          built on top of the AwesomeWM window manager. It provides a modern and
-          polished user interface, enhanced workflows, and pre-configured
-          widgets and layouts to streamline productivity while maintaining the
-          lightweight and extensible nature of AwesomeWM."
-          imgs={[
-            "./images/kwesomede/1.png",
-            "./images/kwesomede/2.png",
-            "./images/kwesomede/3.png",
-          ]}
-          color="#477070"
-          showStars={true}
-          features={["Lua", "AwesomeWM"]}
-        ></Project>
-        <Project
-          owner="Kasper24"
-          repo="Lightify"
-          desc="A sleek and intuitive Flutter app to control your RGB lighting! Inspired by the user interfaces of popular apps like Philips Hue and LIFX, this app provides a modern and responsive way to customize your lighting experience. Whether you're setting the mood or syncing lights with your activities, RGB Controller has you covered."
-          imgs={[
-            "./images/lightify/1.jpg",
-            "./images/lightify/1.jpg",
-            "./images/lightify/1.jpg",
-          ]}
-          color="#5c1ae5"
-          showStars={false}
-          features={["Flutter", "Dart"]}
-        ></Project>
-      </ul>
-    </section>
+    <div className="group rounded-2xl border border-border/50 bg-card/50 p-6 transition-all hover:bg-card/80">
+      <h3 className="mb-4 text-lg font-semibold">Tech Stack</h3>
+      <div className="grid grid-cols-4 gap-3">
+        {techs.map(({ Logo, name, color }) => (
+          <div
+            key={name}
+            className="group/tech flex flex-col items-center gap-2"
+          >
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-lg bg-background/80 transition-all group-hover/tech:scale-110 group-hover/tech:shadow-md"
+              style={{ backgroundColor: `${color}15` }}
+            >
+              <Logo className="h-5 w-5 fill-foreground dark:fill-white" />
+            </div>
+            <span className="text-xs text-muted-foreground transition-colors group-hover/tech:text-foreground">
+              {name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
-const Footer = () => {
-  const { t } = useTranslation();
+const AboutCard = () => {
+  return (
+    <div className="rounded-2xl border border-border/50 bg-card/50 p-6 transition-all hover:bg-card/80">
+      <h2 className="mb-4 text-2xl font-bold">About Me</h2>
+      <div className="space-y-4 text-muted-foreground">
+        <p className="leading-relaxed">
+          I'm a passionate developer who started coding as a kid, initially
+          drawn to game development with Unity and Unreal Engine. This early
+          experience sparked my love for creating digital experiences.
+        </p>
+        <p className="leading-relaxed">
+          Today, I focus on building modern web applications using TypeScript,
+          React, and Next.js. I'm passionate about open-source software, clean
+          code, and creating intuitive user experiences.
+        </p>
+        <div className="flex flex-wrap gap-2 pt-2">
+          <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+            🎮 Game Dev Background
+          </span>
+          <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+            🌐 Web Applications
+          </span>
+          <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+            🔓 Open Source
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProjectCard = ({
+  title,
+  description,
+  image,
+  tags,
+  github,
+  demo,
+  owner,
+  repo,
+}: {
+  title: string;
+  description: string;
+  image?: string;
+  tags: string[];
+  github: string;
+  demo?: string;
+  owner: string;
+  repo: string;
+}) => {
+  const [starCount, setStarCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchStarCount = async () => {
+      try {
+        const response = await fetch(
+          `https://api.github.com/repos/${owner}/${repo}`,
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setStarCount(data.stargazers_count);
+        }
+      } catch (error) {
+        console.error("Failed to fetch star count:", error);
+      }
+    };
+
+    fetchStarCount();
+  }, [owner, repo]);
+
+  const shouldShowStars = starCount !== null && starCount > 20;
 
   return (
-    <footer className="space-y-3 text-center text-sm opacity-80">
-      {t("Copyright")}
-    </footer>
+    <div className="group overflow-hidden rounded-2xl border border-border/50 bg-card/50 transition-all hover:border-primary/20 hover:bg-card/80 hover:shadow-xl">
+      {image && (
+        <div className="aspect-video overflow-hidden bg-muted">
+          <img
+            src={image}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      )}
+      <div className="p-6">
+        <div className="mb-3 flex items-start justify-between">
+          <h3 className="text-xl font-semibold transition-colors group-hover:text-primary">
+            {title}
+          </h3>
+          <div className="flex gap-2 opacity-70 transition-opacity group-hover:opacity-100">
+            <a
+              href={github}
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-background transition-all hover:scale-110 hover:bg-accent"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub className="h-4 w-4" />
+            </a>
+            {demo && (
+              <a
+                href={demo}
+                className="flex h-8 w-8 items-center justify-center rounded-lg bg-background transition-all hover:scale-110 hover:bg-accent"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaExternalLinkAlt className="h-3 w-3" />
+              </a>
+            )}
+          </div>
+        </div>
+        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+          {description}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/20"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        {shouldShowStars && (
+          <div className="mt-3 flex items-center gap-1 text-xs text-muted-foreground">
+            <FaStar className="h-3 w-3 text-yellow-500" />
+            <span>{starCount} stars</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const ContactSection = () => {
+  const contacts = [
+    {
+      name: "GitHub",
+      handle: "@Kasper24",
+      url: "https://github.com/Kasper24",
+      icon: FaGithub,
+      color: "hover:text-gray-900 dark:hover:text-white",
+    },
+    {
+      name: "LinkedIn",
+      handle: "ofek-its",
+      url: "https://www.linkedin.com/in/ofek-its",
+      icon: FaLinkedin,
+      color: "hover:text-blue-600",
+    },
+    {
+      name: "Email",
+      handle: "ofek4430@gmail.com",
+      url: "mailto:ofek4430@gmail.com",
+      icon: FaEnvelope,
+      color: "hover:text-red-500",
+    },
+  ];
+
+  return (
+    <div className="rounded-2xl border border-border/50 bg-card/50 p-6 transition-all hover:bg-card/80">
+      <h3 className="mb-4 text-lg font-semibold">Let's Connect</h3>
+      <div className="space-y-2">
+        {contacts.map(({ name, handle, url, icon: Icon, color }) => (
+          <a
+            key={name}
+            href={url}
+            className={`flex items-center gap-3 rounded-lg p-3 transition-all hover:scale-105 hover:bg-accent ${color}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon className="h-5 w-5 text-muted-foreground transition-colors" />
+            <div>
+              <div className="text-sm font-medium">{name}</div>
+              <div className="text-xs text-muted-foreground">{handle}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
   );
 };
 
 export default function App() {
+  const { t } = useTranslation();
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="w-screen overflow-x-hidden">
-        <div className="mx-auto max-w-screen-lg space-y-12 p-6">
-          <Header />
-          <main className="space-y-6">
-            <Title />
-            <div className="gap-x-5 space-y-6 lg:flex lg:space-y-0">
-              <div className="space-y-6 lg:w-6/12">
-                <AboutMe />
-              </div>
-              <div className="space-y-3 rounded-md bg-foreground/5 p-4 lg:w-6/12">
-                <Skills />
-                <Contact />
+      <div className="min-h-screen bg-background">
+        <div className="mx-auto max-w-4xl p-6">
+          {/* Clean header without navbar */}
+          <header className="flex justify-center pb-8">
+            <Header />
+          </header>
+
+          <main className="space-y-8">
+            {/* Hero */}
+            <HeroSection />
+
+            {/* About & Tech Stack */}
+            <div className="grid gap-6 md:grid-cols-2">
+              <AboutCard />
+              <div className="space-y-6">
+                <TechStack />
+                <ContactSection />
               </div>
             </div>
-            <Projects />
+
+            {/* Projects */}
+            <section id="projects" className="scroll-mt-8">
+              <div className="mb-6 flex items-center gap-3">
+                <h2 className="text-2xl font-bold">{t("Featured Projects")}</h2>
+                <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                  {5} projects
+                </span>
+              </div>
+              <div className="grid gap-6">
+                {/* First row - 2 columns */}
+                <div className="grid gap-6 md:grid-cols-2">
+                  <ProjectCard
+                    title="Echo"
+                    description="Real-time messaging application with modern infrastructure. Features WebSocket communication, responsive UI, and cloud deployment with comprehensive testing suite."
+                    tags={[
+                      "Next.js",
+                      "Socket.IO",
+                      "Postgres",
+                      "AWS",
+                      "Docker",
+                      "Terraform",
+                    ]}
+                    github="https://github.com/Kasper24/Echo"
+                    owner="Kasper24"
+                    repo="Echo"
+                  />
+                  <ProjectCard
+                    title="KwesomeDE"
+                    description="A highly customizable desktop environment built on AwesomeWM with modern UI, enhanced workflows, and productivity-focused widgets."
+                    image="./images/kwesomede/1.png"
+                    tags={["Lua", "AwesomeWM", "Linux"]}
+                    github="https://github.com/Kasper24/KwesomeDE"
+                    owner="Kasper24"
+                    repo="KwesomeDE"
+                  />
+                </div>
+
+                {/* Second row - 3 columns */}
+                <div className="grid gap-6 md:grid-cols-3">
+                  <ProjectCard
+                    title="Typistack"
+                    description="Express.js wrapper providing full-stack type safety. Generates typed routes and handlers, reducing bugs and improving developer experience."
+                    tags={["TypeScript", "Express.js", "API"]}
+                    github="https://github.com/Kasper24/Typistack"
+                    owner="Kasper24"
+                    repo="Typistack"
+                  />
+                  <ProjectCard
+                    title="Walltone"
+                    description="Wallpaper manager and theme generator for Linux. Extracts colors, generates Base16 themes, and supports multiple wallpaper backends."
+                    tags={["Electron", "React", "Node.js", "Linux"]}
+                    github="https://github.com/Kasper24/Walltone"
+                    owner="Kasper24"
+                    repo="Walltone"
+                  />
+                  <ProjectCard
+                    title="Lightify"
+                    description="Sleek Flutter app for RGB lighting control, inspired by Philips Hue and LIFX interfaces for modern lighting experiences."
+                    tags={["Flutter", "Dart", "Mobile"]}
+                    github="https://github.com/Kasper24/Lightify"
+                    owner="Kasper24"
+                    repo="Lightify"
+                  />
+                </div>
+              </div>
+            </section>
           </main>
-          <Footer />
+
+          {/* Footer */}
+          <footer className="mt-16 border-t border-border/50 py-8 text-center text-sm text-muted-foreground">
+            <p>{t("Copyright")} • Built with React & Tailwind CSS</p>
+          </footer>
         </div>
       </div>
     </ThemeProvider>

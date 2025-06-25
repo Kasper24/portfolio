@@ -16,10 +16,12 @@ vi.mock("@/hooks/use-media-query", () => {
 });
 
 const toggleThemeMock = vi.fn();
-vi.mock("@/components/theme-provider", () => {
+vi.mock("@/providers/theme-provider", () => {
   return {
     useTheme: () => {
       return {
+        theme: "dark",
+        setTheme: vi.fn(),
         toggleTheme: toggleThemeMock,
       };
     },
