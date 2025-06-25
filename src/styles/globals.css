@@ -88,7 +88,7 @@ html {
 
 @layer components {
   .glass-effect {
-    @apply bg-background/80 backdrop-blur-sm border border-border/50;
+    @apply border border-border/50 bg-background/80 backdrop-blur-sm;
   }
 
   .card-hover {
