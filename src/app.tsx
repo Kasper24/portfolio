@@ -331,6 +331,7 @@ export default function App() {
                   <ProjectCard
                     title="Echo"
                     description="Real-time messaging application with modern infrastructure. Features WebSocket communication, responsive UI, and cloud deployment with comprehensive testing suite."
+                    image="./images/echo/1.jpeg"
                     tags={[
                       "Next.js",
                       "Socket.IO",
@@ -343,6 +344,20 @@ export default function App() {
                     owner="Kasper24"
                     repo="Echo"
                   />
+
+                  <ProjectCard
+                    title="Walltone"
+                    description="Wallpaper manager and theme generator for Linux. Extracts colors, generates Base16 themes, and supports multiple wallpaper backends."
+                    image="./images/walltone/1.png"
+                    tags={["Electron", "React", "Node.js", "Linux"]}
+                    github="https://github.com/Kasper24/Walltone"
+                    owner="Kasper24"
+                    repo="Walltone"
+                  />
+                </div>
+
+                {/* Second row - 3 columns */}
+                <div className="grid gap-6 md:grid-cols-3">
                   <ProjectCard
                     title="KwesomeDE"
                     description="A highly customizable desktop environment built on AwesomeWM with modern UI, enhanced workflows, and productivity-focused widgets."
@@ -352,10 +367,6 @@ export default function App() {
                     owner="Kasper24"
                     repo="KwesomeDE"
                   />
-                </div>
-
-                {/* Second row - 3 columns */}
-                <div className="grid gap-6 md:grid-cols-3">
                   <ProjectCard
                     title="Typistack"
                     description="Express.js wrapper providing full-stack type safety. Generates typed routes and handlers, reducing bugs and improving developer experience."
@@ -364,14 +375,7 @@ export default function App() {
                     owner="Kasper24"
                     repo="Typistack"
                   />
-                  <ProjectCard
-                    title="Walltone"
-                    description="Wallpaper manager and theme generator for Linux. Extracts colors, generates Base16 themes, and supports multiple wallpaper backends."
-                    tags={["Electron", "React", "Node.js", "Linux"]}
-                    github="https://github.com/Kasper24/Walltone"
-                    owner="Kasper24"
-                    repo="Walltone"
-                  />
+
                   <ProjectCard
                     title="Lightify"
                     description="Sleek Flutter app for RGB lighting control, inspired by Philips Hue and LIFX interfaces for modern lighting experiences."
