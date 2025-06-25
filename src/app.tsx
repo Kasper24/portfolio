@@ -32,8 +32,13 @@ const HeroSection = () => {
         </div>
         <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-6xl">
           Hi, I'm{" "}
+          <img
+            src="./images/kasper.jpg"
+            alt="Ofek's avatar"
+            className="-mt-6 ml-2 inline-block h-16 w-12 rounded-full border-2 border-primary"
+          ></img>
           <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Ofek
+            fek
           </span>
         </h1>
         <p className="mx-auto mb-8 max-w-xl text-lg text-muted-foreground">
@@ -175,7 +180,7 @@ const ProjectCard = ({
     fetchStarCount();
   }, [owner, repo]);
 
-  const shouldShowStars = starCount !== null && starCount > 20;
+  const shouldShowStars = starCount !== null && starCount > 5;
 
   return (
     <div className="group overflow-hidden rounded-2xl border border-border/50 bg-card/50 transition-all hover:border-primary/20 hover:bg-card/80 hover:shadow-xl">
@@ -322,42 +327,34 @@ export default function App() {
               <div className="mb-6 flex items-center gap-3">
                 <h2 className="text-2xl font-bold">{t("Featured Projects")}</h2>
                 <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-                  {5} projects
+                  {6} projects
                 </span>
               </div>
               <div className="grid gap-6">
                 {/* First row - 2 columns */}
                 <div className="grid gap-6 md:grid-cols-2">
                   <ProjectCard
-                    title="Echo"
-                    description="Real-time messaging application with modern infrastructure. Features WebSocket communication, responsive UI, and cloud deployment with comprehensive testing suite."
-                    image="./images/echo/1.jpeg"
-                    tags={[
-                      "Next.js",
-                      "Socket.IO",
-                      "Postgres",
-                      "AWS",
-                      "Docker",
-                      "Terraform",
-                    ]}
-                    github="https://github.com/Kasper24/Echo"
-                    owner="Kasper24"
-                    repo="Echo"
-                  />
-
-                  <ProjectCard
                     title="Walltone"
                     description="Wallpaper manager and theme generator for Linux. Extracts colors, generates Base16 themes, and supports multiple wallpaper backends."
                     image="./images/walltone/1.png"
                     tags={["Electron", "React", "Node.js", "Linux"]}
-                    github="https://github.com/Kasper24/Walltone"
+                    github="https://github.com/Kasper24/walltone"
                     owner="Kasper24"
                     repo="Walltone"
                   />
+                  <ProjectCard
+                    title="Echo"
+                    description="Real-time messaging application with modern infrastructure. Features WebSocket communication, responsive UI, and cloud deployment with comprehensive testing suite."
+                    image="./images/echo/1.jpeg"
+                    tags={["Next.js", "Socket.IO", "Postgres"]}
+                    github="https://github.com/Kasper24/Echo"
+                    owner="Kasper24"
+                    repo="Echo"
+                  />
                 </div>
 
-                {/* Second row - 3 columns */}
-                <div className="grid gap-6 md:grid-cols-3">
+                {/* Second row - 2 columns */}
+                <div className="grid gap-6 md:grid-cols-2">
                   <ProjectCard
                     title="KwesomeDE"
                     description="A highly customizable desktop environment built on AwesomeWM with modern UI, enhanced workflows, and productivity-focused widgets."
@@ -367,6 +364,18 @@ export default function App() {
                     owner="Kasper24"
                     repo="KwesomeDE"
                   />
+                  <ProjectCard
+                    title="QMK-OpenRGB"
+                    description="Enhanced QMK firmware fork integrating OpenRGB support for advanced RGB lighting control on custom mechanical keyboards."
+                    tags={["C", "QMK", "Firmware", "RGB", "Keyboard"]}
+                    github="https://github.com/Kasper24/QMK-OpenRGB"
+                    owner="Kasper24"
+                    repo="QMK-OpenRGB"
+                  />
+                </div>
+
+                {/* Third row - 2 columns */}
+                <div className="grid gap-6 md:grid-cols-2">
                   <ProjectCard
                     title="Typistack"
                     description="Express.js wrapper providing full-stack type safety. Generates typed routes and handlers, reducing bugs and improving developer experience."

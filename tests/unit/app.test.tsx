@@ -143,6 +143,7 @@ describe("App Component", () => {
       expect(screen.getByText("Typistack")).toBeInTheDocument();
       expect(screen.getByText("Walltone")).toBeInTheDocument();
       expect(screen.getByText("Lightify")).toBeInTheDocument();
+      expect(screen.getByText("QMK-OpenRGB")).toBeInTheDocument();
     });
 
     it("displays project descriptions", async () => {
@@ -188,7 +189,7 @@ describe("App Component", () => {
 
       await waitFor(() => {
         // Since all projects fetch the same star count, we expect multiple instances
-        expect(screen.getAllByText("42 stars")).toHaveLength(5);
+        expect(screen.getAllByText("42 stars")).toHaveLength(6);
       });
     });
 
@@ -261,7 +262,7 @@ describe("App Component", () => {
       render(<App />);
     });
 
-    expect(screen.getByText("5 projects")).toBeInTheDocument();
+    expect(screen.getByText("6 projects")).toBeInTheDocument();
   });
 
   it("renders footer with copyright information", async () => {
