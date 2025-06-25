@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import App from "@/app";
 
@@ -41,10 +41,17 @@ describe("App Component", () => {
   beforeEach(() => {
     mockFetch.mockClear();
     vi.clearAllMocks();
+    // Set up default mock for fetch to prevent errors
+    mockFetch.mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ stargazers_count: 0 }),
+    });
   });
 
-  it("renders the main layout correctly", () => {
-    render(<App />);
+  it("renders the main layout correctly", async () => {
+    await act(async () => {
+      render(<App />);
+    });
 
     expect(screen.getByTestId("header")).toBeInTheDocument();
     expect(screen.getByText(/Hi, I'm/)).toBeInTheDocument();
@@ -52,8 +59,10 @@ describe("App Component", () => {
   });
 
   describe("HeroSection", () => {
-    it("renders hero section with correct content", () => {
-      render(<App />);
+    it("renders hero section with correct content", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
       expect(screen.getByText(/Available for work/)).toBeInTheDocument();
       expect(screen.getByText(/Full-stack developer/)).toBeInTheDocument();
@@ -65,7 +74,9 @@ describe("App Component", () => {
       ).toBeInTheDocument();
     });
     it("has working navigation links", async () => {
-      render(<App />);
+      await act(async () => {
+        render(<App />);
+      });
 
       const projectsLink = screen.getByRole("link", { name: /view projects/i });
       const user = userEvent.setup();
@@ -78,8 +89,10 @@ describe("App Component", () => {
   });
 
   describe("TechStack", () => {
-    it("renders tech stack section", () => {
-      render(<App />);
+    it("renders tech stack section", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
       expect(screen.getByText("Tech Stack")).toBeInTheDocument();
 
@@ -96,8 +109,10 @@ describe("App Component", () => {
   });
 
   describe("AboutCard", () => {
-    it("renders about section with correct content", () => {
-      render(<App />);
+    it("renders about section with correct content", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
       expect(screen.getByText("About Me")).toBeInTheDocument();
       expect(
@@ -118,8 +133,10 @@ describe("App Component", () => {
       });
     });
 
-    it("renders project cards with correct information", () => {
-      render(<App />);
+    it("renders project cards with correct information", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
       expect(screen.getByText("Echo")).toBeInTheDocument();
       expect(screen.getByText("KwesomeDE")).toBeInTheDocument();
@@ -128,8 +145,10 @@ describe("App Component", () => {
       expect(screen.getByText("Lightify")).toBeInTheDocument();
     });
 
-    it("displays project descriptions", () => {
-      render(<App />);
+    it("displays project descriptions", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
       expect(
         screen.getByText(/Real-time messaging application/),
@@ -142,8 +161,10 @@ describe("App Component", () => {
       ).toBeInTheDocument();
     });
 
-    it("shows project tags", () => {
-      render(<App />);
+    it("shows project tags", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
       // Use getAllByText for tags that might appear in multiple places
       expect(screen.getAllByText("TypeScript").length).toBeGreaterThan(0);
@@ -155,7 +176,9 @@ describe("App Component", () => {
     });
 
     it("fetches and displays GitHub stars", async () => {
-      render(<App />);
+      await act(async () => {
+        render(<App />);
+      });
 
       await waitFor(() => {
         expect(mockFetch).toHaveBeenCalledWith(
@@ -172,7 +195,9 @@ describe("App Component", () => {
     it("handles GitHub API errors gracefully", async () => {
       mockFetch.mockRejectedValue(new Error("API Error"));
 
-      render(<App />);
+      await act(async () => {
+        render(<App />);
+      });
 
       await waitFor(() => {
         expect(mockFetch).toHaveBeenCalled();
@@ -182,20 +207,25 @@ describe("App Component", () => {
       expect(screen.queryByText(/stars/)).not.toBeInTheDocument();
     });
 
-    it("includes GitHub and demo links", () => {
-      render(<App />);
+    it("includes GitHub and demo links", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
-      // Check for GitHub links (there should be multiple)
-      const githubLinks = screen
-        .getAllByRole("link", { name: "" })
-        .filter((link) => link.getAttribute("href")?.includes("github.com"));
+      // Check for GitHub links by finding all links that point to github.com
+      const allLinks = screen.getAllByRole("link");
+      const githubLinks = allLinks.filter((link) =>
+        link.getAttribute("href")?.includes("github.com"),
+      );
       expect(githubLinks.length).toBeGreaterThan(0);
     });
   });
 
   describe("ContactSection", () => {
-    it("renders contact information", () => {
-      render(<App />);
+    it("renders contact information", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
       expect(screen.getByText("Let's Connect")).toBeInTheDocument();
       expect(screen.getByText("@Kasper24")).toBeInTheDocument();
@@ -203,10 +233,17 @@ describe("App Component", () => {
       expect(screen.getByText("ofek4430@gmail.com")).toBeInTheDocument();
     });
 
-    it("has working contact links", () => {
-      render(<App />);
+    it("has working contact links", async () => {
+      await act(async () => {
+        render(<App />);
+      });
 
-      const githubLink = screen.getByRole("link", { name: /github/i });
+      // Find the contact section GitHub link by its specific href
+      const allLinks = screen.getAllByRole("link");
+      const githubLink = allLinks.find(
+        (link) => link.getAttribute("href") === "https://github.com/Kasper24",
+      );
+
       const linkedinLink = screen.getByRole("link", { name: /linkedin/i });
       const emailLink = screen.getByRole("link", { name: /email/i });
 
@@ -219,14 +256,18 @@ describe("App Component", () => {
     });
   });
 
-  it("renders the correct number of projects", () => {
-    render(<App />);
+  it("renders the correct number of projects", async () => {
+    await act(async () => {
+      render(<App />);
+    });
 
     expect(screen.getByText("5 projects")).toBeInTheDocument();
   });
 
-  it("renders footer with copyright information", () => {
-    render(<App />);
+  it("renders footer with copyright information", async () => {
+    await act(async () => {
+      render(<App />);
+    });
 
     expect(screen.getByText(/Copyright/)).toBeInTheDocument();
     expect(
